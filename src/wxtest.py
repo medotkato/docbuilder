@@ -1,5 +1,6 @@
 import wx
 from docbuilder import *
+import wx.lib.scrolledpanel as scrolled
 
 # app = wx.App()
 # frame = wx.Frame(None, title='KZVG: Договорник 3000', size=(500, 700))
@@ -20,7 +21,12 @@ class Example(wx.Frame):
 
     def InitUI(self, fields_names):
 
-        panel = wx.Panel(self)
+        # panel = wx.Panel(self)
+
+        # Add a panel so it looks the correct on all platforms
+        panel = wx.ScrolledWindow(self,wx.ID_ANY)
+        panel.SetScrollbars(1, 1, 1, 1)
+
         sizer = wx.GridBagSizer(15,15)
 
         icon = wx.StaticBitmap(panel, bitmap=wx.Bitmap('res/PNG_210619_kzvg-logo-name-transp.png'))
