@@ -1,8 +1,9 @@
-import yaml, os
-from docxtpl import DocxTemplate
+import argparse
+import os
+import sys
+import yaml
 
 def get_details_from_yaml_cp1251 (details_yaml_file: dict) -> dict:
-
     scriptfolder = os.path.dirname(os.path.abspath(__file__))
     try:
         with open(f'{scriptfolder}\\{details_yaml_file}','r', encoding="cp1251") as yaml_file:
@@ -11,13 +12,33 @@ def get_details_from_yaml_cp1251 (details_yaml_file: dict) -> dict:
         raise Exception(f'Can\'t find ({details_yaml_file}) or can\'t load it.')
     return details
 
-def doc_filler (template_filename, details_dic):
-    doc = DocxTemplate(f'{template_filename}.docx')
-    doc.render(doc_details)
-    doc.save(f'{template_filename}_filled.docx')
+def doc_filler (template_docx_filename, details_dic):
+    from docxtpl import DocxTemplate
+    doc = DocxTemplate(f'{template_docx_filename}')
+    doc.render(details_dic)
+    out_filename=template_docx_filename.replace('.docx','')
+    doc.save(f'{out_filename}_filled.docx')
 
-template_filename = 'KZVG_Contract_Template'
-details_yaml_file = 'doc_cp1251.yaml'
+if __name__ == '__main__':
 
-doc_details = get_details_from_yaml_cp1251(details_yaml_file)
-doc_filler (template_filename, doc_details)
+    # template_docx_filename = 'KZVG_Contract_Template.docx'
+    # details_yaml_filename = 'doc_cp1251.yaml'
+
+    my_parser = argparse.ArgumentParser(description='Fill the template with data')
+
+    my_parser.add_argument('-t', '--template',
+                        metavar='some_template.docx',
+                        type=str,
+                        help='docx template\'s filename')
+    my_parser.add_argument('-d', '--details',
+                        metavar='details.yaml',
+                        type=str,
+                        help='details for filling the template in')
+
+    args = my_parser.parse_args()
+
+    template_docx_filename = args.template
+    details_yaml_filename = args.details
+
+    doc_details = get_details_from_yaml_cp1251(details_yaml_filename)
+    doc_filler (template_docx_filename, doc_details)
