@@ -35,11 +35,11 @@ class Example(wx.Frame):
         text1 = wx.StaticText(panel, label="KZVG Договорник 3000")
         sizer.Add(text1, pos=(0, 2), flag=wx.TOP|wx.RIGHT|wx.BOTTOM, border=15)
 
-        line = wx.StaticLine(panel)
-        sizer.Add(line, pos=(1, 0), span=(1, 5),
-            flag=wx.EXPAND|wx.BOTTOM, border=10)
+        # line = wx.StaticLine(panel)
+        # sizer.Add(line, pos=(1, 0), span=(1, 5),
+        #     flag=wx.EXPAND|wx.BOTTOM, border=10)
 
-        i = 2
+        i = 1
         for field_name in fields_names:
             text = wx.StaticText(panel, label=field_name)
             sizer.Add(text, pos=(i, 0), flag=wx.LEFT, border=10)
