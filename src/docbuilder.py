@@ -1,6 +1,5 @@
 import argparse
 import os
-import sys
 import yaml
 
 def get_details_from_yaml_cp1251 (details_yaml_file: dict) -> dict:
@@ -20,9 +19,6 @@ def doc_filler (template_docx_filename, details_dic):
     doc.save(f'{out_filename}_filled.docx')
 
 if __name__ == '__main__':
-
-    # template_docx_filename = 'KZVG_Contract_Template.docx'
-    # details_yaml_filename = 'doc_cp1251.yaml'
 
     my_parser = argparse.ArgumentParser(description='Fill the template with data')
 
