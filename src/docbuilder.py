@@ -2,13 +2,13 @@ import argparse
 import os
 import yaml
 
-def get_details_from_yaml_cp1251 (details_yaml_file: dict) -> dict:
+def yaml_read (yaml_file: str) -> dict:
     scriptfolder = os.path.dirname(os.path.abspath(__file__))
     try:
-        with open(f'{scriptfolder}\\{details_yaml_file}','r', encoding="cp1251") as yaml_file:
+        with open(f'{scriptfolder}\\{yaml_file}','r', encoding="utf-8") as yaml_file:
             details = yaml.safe_load(yaml_file)
     except:
-        raise Exception(f'Can\'t find ({details_yaml_file}) or can\'t load it.')
+        raise Exception(f'Can\'t find ({yaml_file}) or can\'t load it.')
     return details
 
 def doc_filler (template_docx_filename, details_dic):
@@ -36,5 +36,5 @@ if __name__ == '__main__':
     template_docx_filename = args.template
     details_yaml_filename = args.details
 
-    doc_details = get_details_from_yaml_cp1251(details_yaml_filename)
+    doc_details = yaml_read(details_yaml_filename)
     doc_filler (template_docx_filename, doc_details)
