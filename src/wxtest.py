@@ -1,17 +1,5 @@
 import wx
-from wx.core import Size
 from docbuilder import *
-
-# app = wx.App()
-# frame = wx.Frame(None, title='KZVG: Договорник 3000', size=(500, 700))
-# frame = wx.Frame(None, style= wx.RESIZE_BORDER | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
-# frame.Center()
-# frame.Show()
-
-
-# app.MainLoop()
-import yaml, os, pprint
-
 
 class FormBuilder(wx.Frame):
 
@@ -61,7 +49,7 @@ class FormBuilder(wx.Frame):
 def main():
 
     yaml_file = 'doc_details.yaml'
-    details = yaml_read(yaml_file)
+    details = yaml_reader(yaml_file)
 
     form_name = details['form_name']
     form_logo_png = details['form_logo_png']

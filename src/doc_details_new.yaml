@@ -1,0 +1,55 @@
+---
+contract_num:
+    label: Номер договора
+    value: Ю15-И
+sign_date:
+    label: Дата договора
+    value: 20.06.2021
+client_name_full:
+    label: Клиент - Полное наименование
+    value: Общество с ограниченной ответственностью "Рога и копыта инкорпорейтед"
+client_head_position_rod_paj:
+    label: Клиент - Должность подписанта (род. падеж)
+    value: генерального директора
+client_head_name_rodpaj:
+    label: Клиент - ФИО подписанта (род. падеж)
+    value: Ивана Сергеевича Иванова
+client_head_ustav_rodpaj:
+    label: Клиент - документ поломочий подписанта (род. падеж)
+    value: устава
+client_name_short:
+    label: Клиент - ФИО подписанта (род. падеж)
+    value: ООО "Рога и Копыта Инкорпорейтед»
+client_ogrn:
+    label: Клиент - ОГРН
+    value: 1199999999999
+client_inn_kpp:
+    label: Клиент - ИНН/КПП
+    value: 7709999999/770701001
+addr_jur_zip_city_street:
+    label: Клиент - Юр. адрес (индекс, город, улица)
+    value: 105666, Москва, ул. Земляной Вал
+addr_jur_addr_building_room:
+    label: Клиент - Юр. адрес (дом, этаж, офис)
+    value: д. 2, эт. 2, оф. 2555
+addr_post_zip_city_street:
+    label: Клиент - Почтовый адрес (индекс, город, улица)
+    value: 111111, Москва, ул. Фрунзенская
+addr_post_building_room:
+    label: Клиент - Почтовый адрес (дом, этаж, офис)
+    value: д. 66, корп. 2, эт. 3
+bank_account_num:
+    label: Клиент - Номер счета
+    value: 40808 880 8 0000 0 088888
+bank_name:
+    label: Клиент - Банк
+    value: АО «Такойтобанк» г. Москва
+bank_bik:
+    label: Клиент - БИК банка
+    value: 088888800
+client_email:
+    label: Клиент - email
+    value: ivanoff@rogaykopyta.com
+client_sign_head_FIO:
+    label: Клиент - И.О. Фамилия подписанта
+    value: И.С. Иванов
