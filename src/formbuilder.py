@@ -1,5 +1,6 @@
 import wx
 from docbuilder import *
+import argparse
 
 class FormBuilder(wx.Frame):
 
@@ -48,12 +49,23 @@ class FormBuilder(wx.Frame):
 
 def main():
 
-    yaml_file = 'doc_details.yaml'
-    details = yaml_reader(yaml_file)
+    my_parser = argparse.ArgumentParser(description='Fill the .docx template with data from .yaml')
 
-    form_name = details['form_name']
-    form_logo_png = details['form_logo_png']
-    form_fields = details['form_fields']
+    my_parser.add_argument('-t', '--template',
+                        metavar='form_template.yaml',
+                        type=str,
+                        help='form\'s template in .yaml file')
+
+    args = my_parser.parse_args()
+
+    form_template_yaml = args.template
+    print (f'Building form using template from: {form_template_yaml}')
+
+    form_template = yaml_reader(form_template_yaml)
+
+    form_name = form_template['form_name']
+    form_logo_png = form_template['form_logo_png']
+    form_fields = form_template['form_fields']
 
     app = wx.App()
     ex = FormBuilder(None, title=form_name, logo=form_logo_png, fields=form_fields)

@@ -2,13 +2,14 @@
 
 form_name: KZVG - Заполнятор договоров 3000
 form_logo_png: res/PNG_210619_kzvg-logo-name-transp.png
+out_name: YYMMDD_KZVG_Contract
 
 form_fields:
     contract_num:
         label: Номер договора
         value: Ю15-И
 
-    sign_date:
+    contract_date:
         label: Дата договора
         value: 20.06.2021
 
@@ -30,7 +31,7 @@ form_fields:
 
     client_name_short:
         label: Клиент - ФИО подписанта (род. падеж)
-        value: ООО "Рога и Копыта Инкорпорейтед»
+        value: ООО "Рога и Копыта Инкорпорейтед"
 
     client_ogrn:
         label: Клиент - ОГРН

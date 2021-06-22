@@ -2,7 +2,7 @@
 contract_num:
     label: Номер договора
     value: Ю15-И
-sign_date:
+contract_date:
     label: Дата договора
     value: 20.06.2021
 client_name_full:
