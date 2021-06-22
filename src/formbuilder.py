@@ -62,7 +62,7 @@ def main():
     form_template_yaml = args.template
     print (f'Building form using template from: {form_template_yaml}')
 
-    form_template = yaml_reader(form_template_yaml)
+    form_template = yaml_read(form_template_yaml)
 
     form_name = form_template['form_name']
     form_logo_png = form_template['form_logo_png']

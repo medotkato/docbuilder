@@ -1,6 +1,6 @@
 import yaml
 
-def yaml_reader (yaml_file: str) -> dict:
+def yaml_read (yaml_file: str) -> dict:
     # scriptfolder = os.path.dirname(os.path.abspath(__file__))
     # print (f'scriptfolder is {scriptfolder}')
     try:
@@ -10,7 +10,7 @@ def yaml_reader (yaml_file: str) -> dict:
         raise Exception(f'Can\'t find ({yaml_file}) or can\'t load it.')
     return details
 
-def yaml_writer (yaml_file: str, yaml_data: dict):
+def yaml_write (yaml_file: str, yaml_data: dict):
     try:
         with open(f'{yaml_file}','w', encoding="utf-8") as yaml_file:
             yaml.dump(yaml_data, yaml_file, allow_unicode=True, explicit_start=True, indent=4, sort_keys=False)

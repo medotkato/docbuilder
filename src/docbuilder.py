@@ -41,7 +41,7 @@ def main():
 
     print (f'Creating {out_filename} using data from {details_yaml_filename} and the .docx template from {template_docx_filename}...')
 
-    details_full = yaml_reader (details_yaml_filename)
+    details_full = yaml_read (details_yaml_filename)
     details_short = values_extractor (details_full)
     doc_builder (template_docx_filename, details_short, out_filename)
 
