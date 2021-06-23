@@ -1,16 +1,18 @@
 import wx
 from docbuilder import *
 import argparse
+import re
+from datetime import datetime
 
 class FormBuilderApp (wx.App):
 
-    def __init__ (self, form_template):
+    def __init__ (self, form_config):
 
         super(FormBuilderApp, self).__init__()
 
-        form_name = form_template['form_name']
-        form_logo_png = form_template['form_logo_png']
-        form_fields = form_template['form_fields']
+        form_name = form_config['form_name']
+        form_logo_png = form_config['form_logo_png']
+        form_fields = form_config['form_fields']
 
         self.frame = FormBuilderFrame(None, title=form_name, logo=form_logo_png, fields=form_fields)
         self.SetTopWindow(self.frame)
@@ -23,39 +25,13 @@ class FormBuilderFrame(wx.Frame):
         self.InitUI(title, logo, fields) # create UI
         self.Centre() # put the form in the center of the screen
 
-    # def grab_data(self):
-    #     # Use wx.Window.FindWindowByName
-
-    #     jet  = wx.MessageBox('grab_data()', 'def', wx.YES_NO | wx.NO_DEFAULT, self)
-    #     # sizer = self.ScrolledWindow.GetSizer()
-    #     # children = sizer.GetChildren()
-    #     # for child in children:
-    #     #     widget = child.GetWindow()
-    #     #     print (widget)
-    #     #     if isinstance(widget, wx.TextCtrl):
-    #     #         widget.Clear()
-    #     return 1
-
-    def OnButton_Fill_Click (self, event):
-        sizer = self.panel.GetSizer()
-        children = sizer.GetChildren()
-        for child in children:
-            widget = child.GetWindow()
-            if isinstance(widget, wx.TextCtrl):
-                print(f'label: {widget.GetName()}; value: {widget.GetValue()}')
-
-        # ret  = wx.MessageBox('OnButton_Fill_Click', 'button', wx.YES_NO | wx.NO_DEFAULT, self)
-        # if ret == wx.YES:
-        #     self.Close()
-        return 1
-
     def InitUI(self, title, logo, fields):
 
         # Add a scrolled self.panel so it looks the correct on all platforms
         self.panel = wx.ScrolledWindow(self,wx.ID_ANY)
         self.panel.SetScrollbars(0, 1, 0, 0)
 
-        sizer = wx.GridBagSizer(15,15)
+        sizer = wx.GridBagSizer(10,10)
         i = 0
 
         icon = wx.StaticBitmap(self.panel, bitmap=wx.Bitmap(logo))
@@ -70,9 +46,15 @@ class FormBuilderFrame(wx.Frame):
         i = i + 1
 
         for field in fields.items():
-            text = wx.StaticText(self.panel, label=field[1]['label'])
-            sizer.Add(text, pos=(i, 0), flag=wx.LEFT, border=10)
-            tc = wx.TextCtrl(self.panel, value=str(field[1]['value']), name=field[0])
+            field_label = field[1]['label']
+            field_value = field[1]['value']
+            field_name = field[0]
+            tc_name = f"{field_name}::{field_label}"
+
+            text = wx.StaticText(self.panel, label=field_label)
+            sizer.Add(text, pos=(i, 0), flag=wx.LEFT|wx.ALIGN_RIGHT, border=10)
+
+            tc = wx.TextCtrl(self.panel, value=str(field_value), name=tc_name)
             sizer.Add(tc, pos=(i, 1), span=(1, 3), flag=wx.TOP|wx.EXPAND)
             i = i + 1
 
@@ -85,25 +67,59 @@ class FormBuilderFrame(wx.Frame):
         self.panel.SetSizer(sizer)
         sizer.Fit(self)
 
+    def grab_data_dic(self):
+        data_out_dic = dict()
+        sizer = self.panel.GetSizer()
+        children = sizer.GetChildren()
+        for child in children:
+            widget = child.GetWindow()
+            if isinstance(widget, wx.TextCtrl):
+                field_name, field_label = re.split('::', widget.GetName())
+                field_value = widget.GetValue()
+                data_out_dic.update({field_name: {'label': field_label, 'value': field_value}})
+        return data_out_dic
+
+    def OnButton_Fill_Click (self, event):
+
+        yaml_out_dic = self.grab_data_dic()
+        data_out_dic = values_extractor(yaml_out_dic)
+
+        now = datetime.now()
+        dt_string = now.strftime("%y%m%d-%H%M%S")
+
+        in_folder = 'in/'
+        out_folder = 'out/'
+        out_folder_data_yaml = f'{out_folder}data_yaml/'
+        out_folder_docx = f'{out_folder}docx/'
+
+        data_out_filename = f'{out_folder_data_yaml}{dt_string}_Contract_data.yaml'
+        docx_out_filename = f'{out_folder_docx}{dt_string}_Contract_filled.docx'
+        docx_template_filename = f'{in_folder}/Template.docx'
+
+        yaml_write(data_out_filename, data_out_dic)
+        doc_builder(docx_template_filename, data_out_dic, docx_out_filename)
+
+        return True
+
+
 def main():
 
     my_parser = argparse.ArgumentParser(description='Fill the .docx template with data from .yaml')
 
-    my_parser.add_argument('-t', '--template',
-                        metavar='form_template.yaml',
+    my_parser.add_argument('-c', '--config',
+                        metavar='form_config.yaml',
                         type=str,
-                        help='form\'s template in .yaml file')
+                        help='form\'s config in .yaml file')
 
     args = my_parser.parse_args()
 
-    form_template_yaml = args.template
-    print (f'Building form using template from: {form_template_yaml}')
+    form_config_yaml = args.config
 
-    form_template = yaml_read(form_template_yaml)
+    print (f'Building form using template from: {form_config_yaml}')
 
-    app = FormBuilderApp(form_template)
-    # ex = FormBuilderFrame(None, title=form_name, logo=form_logo_png, fields=form_fields)
-    # ex.Show()
+    form_config = yaml_read(form_config_yaml)
+
+    app = FormBuilderApp(form_config)
     app.MainLoop()
 
 if __name__ == '__main__':

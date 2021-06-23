@@ -24,10 +24,10 @@ def main():
                         metavar='some_template.docx',
                         type=str,
                         help='docx template\'s filename')
-    my_parser.add_argument('-d', '--details',
-                        metavar='details.yaml',
+    my_parser.add_argument('-d', '--data',
+                        metavar='data.yaml',
                         type=str,
-                        help='details for filling the template in')
+                        help='data for filling the template in')
     my_parser.add_argument('-o', '--outfile',
                     metavar='outfile.docx',
                     type=str,
@@ -36,14 +36,14 @@ def main():
     args = my_parser.parse_args()
 
     template_docx_filename = args.template
-    details_yaml_filename = args.details
-    out_filename = args.outfile
+    data_yaml_filename = args.data
+    out_docx_filename = args.outfile
 
-    print (f'Creating {out_filename} using data from {details_yaml_filename} and the .docx template from {template_docx_filename}...')
+    print (f'Creating {out_docx_filename} using data from {data_yaml_filename} and the .docx template from {template_docx_filename}...')
 
-    details_full = yaml_read (details_yaml_filename)
+    details_full = yaml_read (data_yaml_filename)
     details_short = values_extractor (details_full)
-    doc_builder (template_docx_filename, details_short, out_filename)
+    doc_builder (template_docx_filename, details_short, out_docx_filename)
 
 if __name__ == '__main__':
     main()

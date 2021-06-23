@@ -1,1 +1,1 @@
-python src\formbuilder.py -t "templates\form.yaml"
+python src\formbuilder.py -c "in\form_config.yaml"
