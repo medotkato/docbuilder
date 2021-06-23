@@ -94,7 +94,7 @@ class FormBuilderFrame(wx.Frame):
 
         data_out_filename = f'{out_folder_data_yaml}{dt_string}_Contract_data.yaml'
         docx_out_filename = f'{out_folder_docx}{dt_string}_Contract_filled.docx'
-        docx_template_filename = f'{in_folder}/template_contract.docx'
+        docx_template_filename = f'{in_folder}template_contract.docx'
 
         yaml_write(data_out_filename, data_out_dic)
         doc_builder(docx_template_filename, data_out_dic, docx_out_filename)
