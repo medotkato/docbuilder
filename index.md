@@ -4,11 +4,13 @@
 
 Собрано на коленке для нужд юридической фирмы [Казарновски Групп](https://kzvg.ru), в которой я руковожу таможенной практикой. Пока что работает только под Microsoft Windows.
 
+Архивы с бинарниками - [в этой папке Google Drive](https://drive.google.com/drive/folders/1-9p3FZjq0pzSQLHtKlNhaUSr3z_F9FB4?usp=sharing). Распаковываем, читаем README. Запускаем и работаем.
+
 ## Порядок использования:
 
 1. Размечаешь .docx шаблон в /in/template_contract.docx, вставляя в него плейсхолдеры вида {{ some_placeholder1 }} ... {{ some_placeholder2 }} там, где надо заполнять данными из формы
 2. Создаешь конфиг для формы в /in/form_config.yaml, в котором указывашь заголовок формы, лого и поля для заполнения (some_placeholder1, some_placeholder2, etc.) - это yaml, там все просто и очевидно.
-3. Запускаешь форму
+3. Запускаешь форму (или просто берешь и качаешь архив с бинарником, чтобы не плясать с питоном)
 
     ``` bash
     python formbuilder.py -c "in\yaml_config.yaml"
