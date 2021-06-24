@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file. The format 
 
 -
 
+## [0.55] - 2021-06-24
+
+- протестировал упаковку в бинарник с помощью pyinstall
+- оформил requirements.txt для быстрого развертывания нужной для исполнения среды с pip:
+
+  ```
+  pip install -r requirements.txt
+  ```
+
 ## [0.5] - 2021-06-23
 
 ### Added
