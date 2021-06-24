@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# KZVG: Заполнятор договоров 3000
 
-You can use the [editor on GitHub](https://github.com/medotkato/docbuilder/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Заполняет шаблон договора в .docx данными из формы. Помогает не множить сущности и не искать по коллегам "последний использованный договор, чтобы скопировать туда данные нового клиента": правильный шаблон всегда ведется в одном месте, а контракты только происходят от него, наследуя общие признаки.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Собрано на коленке для нужд юридической фирмы [Казарновски Групп](https://kzvg.ru), в которой я руковожу таможенной практикой. Пока что работает только под Microsoft Windows.
 
-### Markdown
+## Порядок использования:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1. Размечаешь .docx шаблон в /in/template_contract.docx, вставляя в него плейсхолдеры вида {{ some_placeholder1 }} ... {{ some_placeholder2 }} там, где надо заполнять данными из формы
+2. Создаешь конфиг для формы в /in/form_config.yaml, в котором указывашь заголовок формы, лого и поля для заполнения (some_placeholder1, some_placeholder2, etc.) - это yaml, там все просто и очевидно.
+3. Запускаешь форму
 
-```markdown
-Syntax highlighted code block
+    ``` bash
+    python formbuilder.py -c "in\yaml_config.yaml"
+    ```
 
-# Header 1
-## Header 2
-### Header 3
+    Ну или просто
 
-- Bulleted
-- List
+    ``` bash
+    test\formbuilder.cmd
+    ```
 
-1. Numbered
-2. List
+4. Заполняешь поля формы, как надо, и жмешь "Заполнить договор"
+5. Забираешь заполненный договор в папке /out/docx с именем вида YYMMDD-HHMMSS_Contract_Filled.docx
+6. ???
+7. PROFIT!
 
-**Bold** and _Italic_ and `Code` text
+## ETC
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/medotkato/docbuilder/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- История разработки: [Changelog.md](CHANGELOG.md)
+- Что еще нужно (хотелось бы) сделать: [TODO.md](TODO.md)
+- Лицензия: Копилефт, GPL v3 и CC BY-SA 4.0. См. [License.md](LICENCE.md)
