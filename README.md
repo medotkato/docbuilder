@@ -4,6 +4,8 @@
 
 Собрано на коленке для нужд юридической фирмы [Казарновски Групп](https://kzvg.ru), в которой я руковожу таможенной практикой. Пока что работает только под Microsoft Windows.
 
+Архивы с бинарниками - [в этой папке Google Drive](https://drive.google.com/drive/folders/1-9p3FZjq0pzSQLHtKlNhaUSr3z_F9FB4?usp=sharing). Распаковываем, читаем README. Запускаем и работаем.
+
 ## Порядок использования:
 
 1. Размечаешь .docx шаблон в /in/template_contract.docx, вставляя в него плейсхолдеры вида {{ some_placeholder1 }} ... {{ some_placeholder2 }} там, где надо заполнять данными из формы
