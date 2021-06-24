@@ -27,6 +27,8 @@
 
 ## ETC
 
-- История разработки: [Changelog.md](CHANGELOG.md)
-- Что еще нужно (хотелось бы) сделать: [TODO.md](TODO.md)
-- Лицензия: Копилефт, GPL v3 и CC BY-SA 4.0. См. [License.md](LICENCE.md)
+- История разработки, 
+- Что еще нужно (хотелось бы) сделать,
+- Лицензия: Копилефт, GPL v3 и CC BY-SA 4.0,
+
+про это все - [в репозитории проекта](https://github.com/medotkato/docbuilder)
