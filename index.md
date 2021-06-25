@@ -4,16 +4,16 @@
 
 Собрано на коленке для нужд юридической фирмы [Казарновски Групп](https://kzvg.ru), в которой я руковожу таможенной практикой. Пока что работает только под Microsoft Windows.
 
-Архивы с бинарниками - [в разделе Releases в репозитории проекта](https://github.com/medotkato/docbuilder/releases). Распаковываем, читаем README. Запускаем и работаем.
+Архивы с бинарниками - [в разделе Releases](https://github.com/medotkato/docbuilder/releases). Скачиваем, распаковываем, читаем README. Запускаем и работаем.
 
 ## Порядок использования:
 
-1. Размечаешь .docx шаблон в /in/template_contract.docx, вставляя в него плейсхолдеры вида {{ some_placeholder1 }} ... {{ some_placeholder2 }} там, где надо заполнять данными из формы
-2. Создаешь конфиг для формы в /in/form_config.yaml, в котором указывашь заголовок формы, лого и поля для заполнения (some_placeholder1, some_placeholder2, etc.) - это yaml, там все просто и очевидно.
-3. Запускаешь форму (или просто берешь и качаешь архив с бинарником, чтобы не плясать с питоном)
+1. Размечаешь .docx шаблон в /in/contract_template.docx, вставляя в него плейсхолдеры вида {{ some_placeholder1 }} ... {{ some_placeholder2 }} там, где надо заполнять данными из формы
+2. Создаешь конфиг для формы в /in/contract_config.yaml, в котором указывашь заголовок формы, лого и поля для заполнения (some_placeholder1, some_placeholder2, etc.) - это yaml, там все просто и очевидно.
+3. Запускаешь форму
 
     ``` bash
-    python formbuilder.py -c "in\yaml_config.yaml"
+    python formbuilder.py -c config.yaml
     ```
 
     Ну или просто
@@ -23,7 +23,7 @@
     ```
 
 4. Заполняешь поля формы, как надо, и жмешь "Заполнить договор"
-5. Забираешь заполненный договор в папке /out/docx с именем вида YYMMDD-HHMMSS_Contract_Filled.docx
+5. Забираешь заполненный договор в папке /out/docx с именем вида YYMMDD-HHMMSS_document_filled.docx
 6. ???
 7. PROFIT!
 
