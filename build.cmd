@@ -25,3 +25,5 @@ robocopy .\ %projdir% *.md /FFT /R:3 /W:10 /Z /NP /NDL > nul
 robocopy .\ %projdir% *.yaml /FFT /R:3 /W:10 /Z /NP /NDL > nul
 
 echo "bin\formbuilder.exe -c config.yaml" > %projdir%\Zapolnyator_3000.cmd
+
+echo "current build is here: %projdir%"
