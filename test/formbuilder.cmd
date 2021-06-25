@@ -1,1 +1,1 @@
-python src\formbuilder.py -c "in\form_config.yaml"
+python src\formbuilder.py -c config.yaml

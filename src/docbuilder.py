@@ -9,7 +9,7 @@ def values_extractor (yaml_full: dict) -> dict:
         dic.update({key: val})
     return dic
 
-def doc_builder (template_docx_filename, doc_data, out_docx_filename):
+def docbuilder (template_docx_filename, doc_data, out_docx_filename):
     from docxtpl import DocxTemplate
     doc = DocxTemplate(f'{template_docx_filename}')
     doc.render(doc_data)
@@ -43,7 +43,7 @@ def main():
 
     details_full = yaml_read (data_yaml_filename)
     details_short = values_extractor (details_full)
-    doc_builder (template_docx_filename, details_short, out_docx_filename)
+    docbuilder (template_docx_filename, details_short, out_docx_filename)
 
 if __name__ == '__main__':
     main()
