@@ -16,7 +16,7 @@ mkdir %bindir%
 mv dist\formbuilder.exe %bindir%
 rmdir /s /q build\
 rmdir /s /q dist\
-del /s /q formbuilder.spec
+del /s /q formbuilder.spec > nul
 
 robocopy in\ %projdir%\in /MIR /FFT /R:3 /W:10 /Z /NP /NDL > nul
 robocopy res\ %projdir%\res /MIR /FFT /R:3 /W:10 /Z /NP /NDL > nul
@@ -25,5 +25,7 @@ robocopy .\ %projdir% *.md /FFT /R:3 /W:10 /Z /NP /NDL > nul
 robocopy .\ %projdir% *.yaml /FFT /R:3 /W:10 /Z /NP /NDL > nul
 
 echo bin\formbuilder.exe -c config.yaml > %projdir%\Zapolnyator_3000.cmd
+
+7z a -tzip -mx5 -r0 %projdir%\current_build.zip %projdir%
 
 echo "current build is here: %projdir%"
